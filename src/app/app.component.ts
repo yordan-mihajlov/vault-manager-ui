@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { AuthService } from 'src/services/auth.service';
+import { StorageService } from 'src/services/storage.service';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 
 @Component({
@@ -15,17 +16,20 @@ import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 export class AppComponent implements OnInit {
 
   isLoggedIn: Observable<boolean>;
-  username: Observable<string | null>;
-  role: Observable<string | null>;
+  username: Observable<string | undefined>;
+  roles: Observable<Array<string | undefined> | undefined>;
 
   constructor(
     private authService: AuthService,
+    private storageService: StorageService,
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.loadStoredUser();
+
     this.isLoggedIn = this.authService.isLoggedIn$;
     this.username = this.authService.username$;
-    this.role = this.authService.role$;
+    this.roles = this.authService.roles$;
   }
 
   onLoginLogoutClick(): void {
@@ -40,5 +44,21 @@ export class AppComponent implements OnInit {
         });
       }
     });
+  }
+
+  private loadStoredUser(): void {
+    const storedUser = this.storageService.getStoredUser();
+    const storedIsLoggedIn = this.storageService.getStoredIsLoggedIn();
+
+    if (storedIsLoggedIn) {
+      this.authService.setIsLoggedIn(storedIsLoggedIn);
+      this.authService.setUsername(storedUser?.username);
+      this.authService.setRoles(storedUser?.roles);
+    } else {
+      this.authService.setIsLoggedIn(false);
+      this.authService.setUsername(undefined);
+      this.authService.setRoles([]);
+    }
+
   }
 }

@@ -4,19 +4,19 @@
 
 <mat-dialog-content>
     <div class="login-container" *ngIf="isLoginForm">
-        <form>
+        <form [formGroup]="loginFormGroup" name="loginFormGroup">
             <mat-form-field>
                 <mat-label>Username</mat-label>
-                <input matInput>
+                <input matInput [formControlName]="'username'">
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Password</mat-label>
-                <input matInput>
+                <input matInput [formControlName]="'password'">
             </mat-form-field>
         </form>
 
-        <button class="login-button" mat-raised-button color="accent">
+        <button class="login-button" mat-raised-button color="accent" (click)="onLogin()">
             Login
         </button>
         <p>

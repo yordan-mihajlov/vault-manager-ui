@@ -11,8 +11,12 @@
                 </div>
                 <div class="user-container">
                     <div *ngIf="isLoggedIn" class="user-info">
-                        <span>{{ username | async }}</span>
-                        <span>({{ role | async }})</span>
+                        <span *ngIf="username | async">
+                            {{ username | async }}
+                        </span>
+                        <div class="roles-container" *ngIf="roles | async">
+                            (<span *ngFor="let role of roles | async">{{ role }}</span>)
+                        </div>
                     </div>
                     <button class="auth-button" mat-raised-button color="secondary" (click)="onLoginLogoutClick()">
                         {{ (isLoggedIn | async) ? 'Logout' : 'Login' }}

@@ -21,7 +21,11 @@ section {
 
             .user-info {
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
+
+                .roles-container {
+                    margin-left: 8px;
+                }
             }
 
             button {
