@@ -15,10 +15,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DrawerItemComponent } from './drawer-item/drawer-item.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DrawerItemComponent
   ],
   imports: [
     AppRoutingModule,

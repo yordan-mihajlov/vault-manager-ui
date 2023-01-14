@@ -19,24 +19,18 @@
     <!-- Navigation drawer with content -->
     <mat-drawer-container [autosize]="true">
         <mat-drawer #drawer [mode]="'side'">
-            <!-- <app-drawer-item routerLink="/home" [icon]="'home'">
-                {{ 'NAVIGATION.HOME' | translate }}
+            <app-drawer-item routerLink="/home" [icon]="'home'">
+                Home
             </app-drawer-item>
-            <app-drawer-item routerLink="/templates" [icon]="'draw'">
-                {{ 'NAVIGATION.EMAIL_TEMPLATES' | translate }}
+            <app-drawer-item routerLink="/projects" [icon]="'folder'">
+                Projects
             </app-drawer-item>
-            <app-drawer-item routerLink="/recipients" [icon]="'person'">
-                {{ 'NAVIGATION.RECIPIENTS' | translate }}
+            <app-drawer-item routerLink="/secret" [icon]="'timer'">
+                Secret
             </app-drawer-item>
-            <app-drawer-item routerLink="/recipient-groups" [icon]="'people'">
-                {{ 'NAVIGATION.RECIPIENT_GROUPS' | translate }}
+            <app-drawer-item routerLink="/secret" [icon]="'account_circle'">
+                My details
             </app-drawer-item>
-            <app-drawer-item routerLink="/history" [icon]="'history'">
-                {{ 'NAVIGATION.HISTORY' | translate }}
-            </app-drawer-item>
-            <app-drawer-item routerLink="/send-emails" [icon]="'emails'">
-                {{ 'NAVIGATION.SEND_EMAILS' | translate }}
-            </app-drawer-item> -->
         </mat-drawer>
 
         <mat-drawer-content class="mat-app-background">
@@ -47,6 +41,10 @@
     </mat-drawer-container>
 
     <footer>
-
+        <mat-toolbar class="mat-elevation-z6" color="primary">
+            <mat-toolbar-row>
+                Footer text
+            </mat-toolbar-row>
+        </mat-toolbar>
     </footer>
 </section>
