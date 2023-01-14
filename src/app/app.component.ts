@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private storageService: StorageService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.loadStoredUser();
@@ -39,8 +41,12 @@ export class AppComponent implements OnInit {
       if (isLoggedIn) {
         // logout flow
       } else {
-        this.dialog.open(LoginDialogComponent, {
+        const dialogRef = this.dialog.open(LoginDialogComponent, {
           minWidth: 640
+        });
+
+        dialogRef.afterClosed().subscribe(({ message }) => {
+          this.snackbar.open(message, undefined, { duration: 3000 });
         });
       }
     });

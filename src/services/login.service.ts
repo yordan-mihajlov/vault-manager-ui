@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { VaultManagementApi } from 'src/api/vault-management-api';
 
+import { VaultManagementApi } from 'src/api/vault-management-api';
 import { UserInfoResponse } from 'src/models/user-info-response.model';
 
 @Injectable({

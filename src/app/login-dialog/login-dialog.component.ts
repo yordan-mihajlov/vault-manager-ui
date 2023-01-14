@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserInfoResponse } from 'src/models/user-info-response.model';
 import { AuthService } from 'src/services/auth.service';
 import { LoginService } from 'src/services/login.service';
@@ -16,6 +18,7 @@ export class LoginDialogComponent implements OnInit {
   isLoginForm: boolean = true;
   loginTitle = 'Log in to your profile';
   registerTitle = 'Create your profile';
+  showPassword = false;
 
   loginFormGroup: FormGroup;
 
@@ -23,7 +26,8 @@ export class LoginDialogComponent implements OnInit {
     private loginService: LoginService,
     private storageService: StorageService,
     private authService: AuthService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private dialogRef: MatDialogRef<LoginDialogComponent>,) { }
 
   ngOnInit(): void {
     this.loginFormGroup = this.generateForm();
@@ -51,12 +55,12 @@ export class LoginDialogComponent implements OnInit {
     this.authService.setRoles(value.roles);
 
     /* Close dialog on success. */
-    // this.dialog.close();
+    this.dialogRef.close({ message: 'Successful login!' });
   }
 
   private handleLoginFailure(value: HttpErrorResponse): void {
     console.log(value);
-    /* Show message for unsuccessful login. */
+    this.dialogRef.close({ message: 'Failed to login!' });
   }
 
   private generateForm(): FormGroup {

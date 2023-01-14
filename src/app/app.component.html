@@ -14,7 +14,7 @@
                         <span *ngIf="username | async">
                             {{ username | async }}
                         </span>
-                        <div class="roles-container" *ngIf="roles | async">
+                        <div class="roles-container" *ngIf="(roles | async) && (roles | async)!.length > 0">
                             (<span *ngFor="let role of roles | async">{{ role }}</span>)
                         </div>
                     </div>
