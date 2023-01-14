@@ -9,9 +9,15 @@
                     </button>
                     Vault Manager
                 </div>
-                <button class="auth-button" mat-raised-button color="secondary" >
-                    Button
-                </button>
+                <div class="user-container">
+                    <div *ngIf="isLoggedIn" class="user-info">
+                        <span>{{ username | async }}</span>
+                        <span>({{ role | async }})</span>
+                    </div>
+                    <button class="auth-button" mat-raised-button color="secondary" (click)="onLoginLogoutClick()">
+                        {{ (isLoggedIn | async) ? 'Logout' : 'Login' }}
+                    </button>
+                </div>
             </mat-toolbar-row>
         </mat-toolbar>
     </header>
